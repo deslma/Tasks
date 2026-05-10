@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taskmaster Tasks</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #b30000;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        p {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .task-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .task-button {
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+        .task-button:hover {
+            background-color: #b30000;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>The Tasks</h1>
+    <p>All the information is on the page. You must enter the correct password to open your task. Your time starts when you click a button.</p>
+
+    <ul class="task-list">
+        <li><button class="task-button" onclick="checkPassword('Task1.html', 'task1')">Task 1</button></li>
+        <li><button class="task-button" onclick="checkPassword('Task2.html', 'task2')">Task 2</button></li>
+        <li><button class="task-button" onclick="checkPassword('Task3.html', 'task3')">Task 3</button></li>
+        <li><button class="task-button" onclick="checkPassword('Task4.html', 'task4')">Task 4</button></li>
+        <li><button class="task-button" onclick="checkPassword('Task5.html', 'task5')">Task 5</button></li>
+        <li><button class="task-button" onclick="checkPassword('Task6.html', 'task6')">Task 6</button></li>
+        <li><button class="task-button" onclick="checkPassword('Task7.html', 'task7')">Task 7</button></li>
+        <li><button class="task-button" onclick="checkPassword('Task8.html', 'task8')">Task 8</button></li>
+        <li><button class="task-button" onclick="checkPassword('Task9.html', 'task9')">Task 9</button></li>
+        <li><button class="task-button" onclick="checkPassword('Task10.html', 'task10')">Task 10</button></li>
+        <li><button class="task-button" onclick="checkPassword('Task11.html', 'task11')">Task 11</button></li>
+        <li><button class="task-button" onclick="checkPassword('Task12.html', 'task12')">Task 12</button></li>
+        <li><button class="task-button" onclick="checkPassword('Task13.html', 'task13')">Task 13</button></li>
+        <li><button class="task-button" onclick="checkPassword('Task14.html', 'task14')">Task 14</button></li>
+    </ul>
+
+    <script>
+        // This is the "dictionary" holding our Alex Horne passwords
+        const passwords = {
+            'task1': 'please-dont-tell-greg',
+            'task2': 'rubber-duck-under-a-desk',
+            'task3': 'all-the-information-is-on-the-card',
+            'task4': 'throw-a-potato-into-a-hole',
+            'task5': 'look-in-the-shid',
+            'task6': 'tree-wizard',
+            'task7': 'forty-two-baked-beans',
+            'task8': 'call-me-little-alex-horne',
+            'task9': 'a-lime-in-a-spoon',
+            'task10': 'find-the-hidden-aubergine',
+            'task11': 'make-the-best-noise',
+            'task12': 'hide-this-pineapple-on-your-person',
+            'task13': 'bubbly-water',
+            'task14': 'your-time-starts-now'
+        };
+
+        function checkPassword(targetUrl, taskKey) {
+            // Ask the user for the password
+            let attempt = prompt("Please enter the Patword for this task:");
+            
+            // If they click cancel or enter nothing, just stop
+            if (attempt === null || attempt.trim() === "") {
+                return; 
+            }
+
+            // Check if the typed password matches the one in our dictionary (ignoring capital letters)
+            if (attempt.toLowerCase().trim() === passwords[taskKey]) {
+                // Success! Send them to the task page.
+                window.location.href = targetUrl;
+            } else {
+                // Failure! Insult them mildly.
+                alert("Incorrect. The Taskmaster is extremely disappointed in you.");
+            }
+        }
+    </script>
+
+</body>
+</html>
