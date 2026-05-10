@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patmaster Task</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+
+        body {
+            background-color: #1a1a1a;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Special Elite', serif;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            width: 450px;
+            height: 300px;
+            margin-top: 100px; /* Space for the letter to pop UP */
+        }
+
+        .envelope-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        /* The Front of the Envelope */
+        .envelope-front {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f3ebd3;
+            border-radius: 0 0 5px 5px;
+            z-index: 30; /* Stays in front of the letter */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* The Top Flap */
+        .flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 225px solid transparent;
+            border-right: 225px solid transparent;
+            border-top: 180px solid #e6dec3;
+            z-index: 40; /* Stays in front of everything until opened */
+            transform-origin: top;
+            transition: transform 0.4s ease;
+        }
+
+        /* The Wax Seal */
+        .wax-seal {
+            position: absolute;
+            top: 150px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 75px;
+            height: 75px;
+            background: radial-gradient(#a80000, #7a0000);
+            border-radius: 50%;
+            z-index: 50;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffd700;
+            font-family: 'Times New Roman', serif;
+            font-size: 24px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            border: 2px solid #8b0000;
+            transition: opacity 0.2s;
+        }
+
+        /* The Task Card - Hidden behind the front */
+        .letter {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 410px;
+            height: 260px;
+            background-color: #fffef2;
+            padding: 30px;
+            box-sizing: border-box;
+            z-index: 20; /* Between front and back */
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.2);
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            border: 1px solid #e0d8c0;
+        }
+
+        .letter h2 {
+            font-size: 1rem;
+            margin: 0 0 15px 0;
+            border-bottom: 1px solid #ccc;
+            color: #555;
+            text-transform: uppercase;
+        }
+
+        .letter p {
+            font-size: 1.4rem;
+            line-height: 1.4;
+            color: #111;
+            margin: 0;
+        }
+
+        .footer {
+            margin-top: 25px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* OPEN ANIMATIONS */
+        .container.open .flap {
+            transform: rotateX(180deg);
+            z-index: 10; /* Move behind the letter once flipped */
+        }
+
+        .container.open .letter {
+            transform: translate(-50%, -240px); /* Slides UP out of the envelope */
+        }
+
+        .container.open .wax-seal {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .instruction {
+            margin-top: 50px;
+            color: #666;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" onclick="this.classList.toggle('open')">
+        <div class="flap"></div>
+        <div class="wax-seal">PM</div>
+        <div class="envelope-front"></div>
+        
+        <div class="letter">
+            <h2>Task 1</h2>
+            <p>Get as close as possible to an enemy without triggering their aggro. You have 20 minutes.</p>
+            <div class="footer">Your time starts now.</div>
+        </div>
+    </div>
+
+    <div class="instruction">Click the seal to reveal the task</div>
+
+</body>
+</html>
